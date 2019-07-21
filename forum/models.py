@@ -10,13 +10,15 @@ class User(models.Model):
 	YEAR_CHOICES = [('FE', '1st year'), ('SE', '2nd year'), ('TE', '3rd year'), ('BE', '4th year')]
 	year = models.CharField(max_length = 2, choices = YEAR_CHOICES) 
 	def __str__(self):
-		return "%s" %(username)
+		return self.username
 
 class TeamMember(models.Model):
 	first_name = models.CharField(max_length = 30)
 	last_name = models.CharField(max_length = 30)
 	username = models.CharField(max_length = 7)
-	department = models.CharField(max_length = 10)
+	department = models.CharField(max_length = 20)
+	def __str__(self):
+		return self.username
 
 class Question(models.Model):
 	title = models.CharField(max_length=100)
@@ -30,6 +32,7 @@ class Question(models.Model):
 		return self.title
 
 class Answer(models.Model):
+	answer_to = models.ForeignKey(Question, on_delete=models.CASCADE, default = None)
 	text = models.TextField()
 	published_date = models.DateTimeField(default=timezone.now)
 	author = models.ForeignKey(TeamMember, on_delete=models.CASCADE)

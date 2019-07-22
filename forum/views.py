@@ -1,6 +1,11 @@
 from django.shortcuts import render
+from django.utils import timezone
+from .models import User, TeamMember, Question, Answer
 
 # Create your views here.
 
 def question_list(request):
-    return render(request, 'forum/question_list.html', {})
+		questions = Question.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+		return render(request, 'forum/question_list.html', {'questions': questions})
+
+

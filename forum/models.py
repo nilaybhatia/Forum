@@ -1,12 +1,14 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.core.validators import RegexValidator
 
 # Create your models here.
+alphanumeric = RegexValidator(r'^[0-9a-zA-Z_-]*$', 'Only alphanumeric characters are allowed.')
 class User(models.Model):
 	first_name = models.CharField(max_length = 30)
 	last_name = models.CharField(max_length = 30)
-	username = models.CharField(max_length = 7)
+	username = models.CharField(max_length = 10, unique=True, validators=[alphanumeric])
 	YEAR_CHOICES = [('FE', '1st year'), ('SE', '2nd year'), ('TE', '3rd year'), ('BE', '4th year')]
 	year = models.CharField(max_length = 2, choices = YEAR_CHOICES) 
 	def __str__(self):
@@ -15,7 +17,7 @@ class User(models.Model):
 class TeamMember(models.Model):
 	first_name = models.CharField(max_length = 30)
 	last_name = models.CharField(max_length = 30)
-	username = models.CharField(max_length = 7)
+	username = models.CharField(max_length = 10, unique=True, validators=[alphanumeric])
 	department = models.CharField(max_length = 20)
 	def __str__(self):
 		return self.username

@@ -1,0 +1,30 @@
+{% extends 'forum/base.html' %}
+
+{% block content %}
+    <div class="question">
+        <h2>{{ question.title }}</h2>
+		{% if question.published_date %}
+            <div class="date">
+                {{ question.published_date }}
+            </div>
+        {% endif %}
+        <p>{{ question.text|linebreaksbr }}</p>
+		<p>Asked by: {{question.author}}</p>
+    </div>
+	<br>
+	<h3>{{answer_count}} Answer(s):</h3>
+	<div class = "answers">
+	{% for answer in answers %}				
+		<p>{{ answer.text|linebreaksbr }}</p>
+		{% if answer.published_date %}
+			<div class="date">
+				{{ answer.published_date }}
+			</div>
+		{% endif %}
+		<p>Answered by: {{answer.author}}</p>
+	<br>
+	<hr>
+	<br>
+	{% endfor %}
+	</div>		
+{% endblock %}

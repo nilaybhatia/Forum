@@ -1,31 +1,12 @@
-{% load static %}
-<html>
-	<head>
-		<title>Unicode Forum</title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-		<link rel="stylesheet" href="{% static 'css/forum.css' %}">
-	<body>
-		<div class="page-header">
-			<h1><a href="/">Welcome to Unicode forum</a></h1>
+{% extends 'forum/base.html' %}
+{% block content %}
+	{% for question in questions %}
+		<div class="question">
+	    		<h2><a href = "{% url 'question_detail' pk=question.pk %}">{{ question.title }}</a></h2>
+	    		<p>{{ question.text|linebreaksbr }}</p>
+			<div class="date">
+			<p>published: {{ question.published_date }}</p>
+	    		</div>
 		</div>
-		<div class="content container">
-		    <div class="row">
-			<div class="col-md-8">
-			    {% for question in questions %}
-				<div class="question">
-				    <div class="date">
-				        <p>published: {{ question.published_date }}</p>
-				    </div>
-				    <h2><a href="">{{ question.title }}</a></h2>
-				    <p>{{ question.text|linebreaksbr }}</p>
-				</div>
-			    {% endfor %}
-			</div>
-		    </div>
-		</div>
-	</body>
-	<head>
-</html>
+	{% endfor %}
+{% endblock %}

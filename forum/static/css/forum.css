@@ -1,7 +1,7 @@
 .page-header {
     background-color: #191970;
-    margin-top: 0;
-    padding: 20px 20px 20px 40px;
+    margin-top: 10;
+    padding: 20px 20px 20px 80px;
 	text-align: center;
 }
 
@@ -36,6 +36,10 @@ h1, h2, h3, h4 {
     float: right;
     font-size: 26pt;
     margin-right: 20px;
+	position: relative;
+	top: 10;
+	right: 40;
+	bottom: 40;
 }
 
 .question {

@@ -10,15 +10,16 @@
 	<body>
 		<div class="page-header">
 			<h1><a href="/">Welcome to Unicode forum</a></h1>
+			<a href="{% url 'question_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 		</div>
 		<div class="content container">
 		    <div class="row">
-			<div class="col-md-8">
-			    {% block content %}
-				{% endblock %}
-			</div>
+				<div class="col-md-8">
+			    		{% block content %}
+					{% endblock %}
+				</div>
 		    </div>
 		</div>
 	</body>
-	<head>
+	</head>
 </html>

@@ -8,23 +8,24 @@
                 {{ question.published_date }}
             </div>
         {% endif %}
-        <p>{{ question.text|linebreaksbr }}</p>
+        <p>{{ question.text | linebreaksbr }}</p>
 		<p>Asked by: {{question.author}}</p>
     </div>
 	<br>
+	<a class="btn btn-default" href = "{% url 'answer_new' pk=question.pk %}">Answer this question <span class="glyphicon glyphicon-pencil"></span></a>
 	<h3>{{answer_count}} Answer(s):</h3>
 	<div class = "answers">
-	{% for answer in answers %}				
-		<p>{{ answer.text|linebreaksbr }}</p>
-		{% if answer.published_date %}
-			<div class="date">
-				{{ answer.published_date }}
-			</div>
-		{% endif %}
-		<p>Answered by: {{answer.author}}</p>
-	<br>
-	<hr>
-	<br>
-	{% endfor %}
+		{% for answer in answers %}				
+			<p>{{ answer.text|linebreaksbr }}</p>
+			{% if answer.published_date %}
+				<div class="date">
+					{{ answer.published_date }}
+				</div>
+			{% endif %}
+			<p>Answered by: {{answer.author}}</p>
+			<br>
+			<hr>
+			<br>
+		{% endfor %}
 	</div>		
 {% endblock %}

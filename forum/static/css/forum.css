@@ -1,7 +1,10 @@
+body{
+    padding-left: 15px;
+}
 .page-header {
     background-color: #191970;
-    margin-top: 10;
-    padding: 20px 20px 20px 10px;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
 	text-align: center;
 }
 
@@ -9,7 +12,6 @@
     color: #ffffff;
     font-size: 36pt;
     text-decoration: none;
-	position: relative;
 }
 
 .content {
@@ -38,16 +40,13 @@ h1, h2, h3, h4 {
     font-size: 26pt;
     margin-right: 20px;
 	position: absolute;
-	top: 40px
-	left: 40px
+	top: 0;
+	right: 40;
 }
 
 .question {
     margin-bottom: 20px;
 	color: #ff750A
-
-.body {
-    padding-left: 15px;
 }
 
 .question h2 a, .question h2 a:visited {

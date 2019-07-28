@@ -6,4 +6,6 @@ urlpatterns = [
 	path('question/<int:pk>/', views.question_detail, name = 'question_detail'),
 	path('question/new/', views.question_new, name = 'question_new'),
 	path('question/<int:pk>/answer/', views.answer_new, name = 'answer_new'),
+	path('question/<int:pk>/edit/', views.question_edit, name = 'question_edit'),
+	path('answer/<int:pk>/edit/', views.answer_edit, name = 'answer_edit'),
 ]

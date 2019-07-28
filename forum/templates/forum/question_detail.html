@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="question">
-        <h2>{{ question.title }}</h2>
+        <h2>{{ question.title}}<a class="btn btn-default" href = "{% url 'question_edit' pk=question.pk %}">Edit<span class="glyphicon glyphicon-pencil"></span></a></h2>
 		{% if question.published_date %}
             <div class="date">
                 {{ question.published_date }}
@@ -22,8 +22,7 @@
 					{{ answer.published_date }}
 				</div>
 			{% endif %}
-			<p>Answered by: {{answer.author}}</p>
-			<br>
+			<p>Answered by: {{answer.author}}</p><a class="btn btn-default" href = "{% url 'answer_edit' pk=answer.pk %}">Edit<span class="glyphicon glyphicon-pencil"></span></a>
 			<hr>
 			<br>
 		{% endfor %}

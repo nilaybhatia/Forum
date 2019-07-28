@@ -39,11 +39,40 @@ def answer_new(request, pk):
 			question = get_object_or_404(Question, pk = pk)
 			answer.answer_to = question
 			answer.save()
-			return redirect('question_detail', pk=question.pk)
+			return redirect('question_detail', pk = question.pk)
 	else:
 		form = AnswerForm()
 		question = get_object_or_404(Question, pk = pk)
 	return render(request, 'forum/answer_edit.html', {'form':form, 'question' : question})
+
+def question_edit(request, pk):
+    question = get_object_or_404(Question, pk = pk)
+    if request.method == "POST":
+        form = QuestionForm(request.POST, instance=question)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.published_date = timezone.now()
+            question.save()
+            return redirect('question_detail', pk = question.pk)
+    else:
+        form = QuestionForm(instance=question)
+    return render(request, 'forum/question_edit.html', {'form': form})
+
+def answer_edit(request, pk): #pk is primary key of answer to be edited 
+	answer = get_object_or_404(Answer, pk = pk)
+	question = answer.answer_to
+	if request.method == "POST":
+		form = AnswerForm(request.POST, instance=answer)
+		if form.is_valid():
+			answer = form.save(commit = False)
+			answer.published_date = timezone.now()
+			answer.answer_to = question
+			answer.save()
+			return redirect('question_detail', pk = question.pk)
+	else:
+		form = AnswerForm(instance=answer)
+	return render(request, 'forum/answer_edit.html', {'form':form, 'question' : question})
+
 
 
 		

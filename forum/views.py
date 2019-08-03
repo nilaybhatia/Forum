@@ -14,7 +14,7 @@ def question_list(request):
 
 def question_detail(request, pk):
 		question = get_object_or_404(Question, pk = pk)
-		answers = Answer.objects.filter (answer_to = question)
+		answers = Answer.objects.filter (answer_to = question).order_by('-upvotes')
 		answer_count = len(answers)
 		return render(request, 'forum/question_detail.html', { 'question' : question, 'answers' : answers, 'answer_count' : answer_count})
 
@@ -72,6 +72,22 @@ def answer_edit(request, pk): #pk is primary key of answer to be edited
 	else:
 		form = AnswerForm(instance=answer)
 	return render(request, 'forum/answer_edit.html', {'form':form, 'question' : question})
+
+def upvote(request, pk):
+	answer = get_object_or_404(Answer, pk=pk)
+	question = answer.answer_to
+	answer.upvotes += 1
+	answer.save()
+	return redirect('question_detail', pk = question.pk)
+
+def downvote(request, pk):
+	answer = get_object_or_404(Answer, pk=pk)
+	question = answer.answer_to
+	answer.upvotes -= 1
+	answer.save()
+	return redirect('question_detail', pk = question.pk)
+
+
 
 
 

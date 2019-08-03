@@ -35,6 +35,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
 	answer_to = models.ForeignKey(Question, on_delete=models.CASCADE, default = None)
+	upvotes = models.IntegerField()
 	text = models.TextField()
 	published_date = models.DateTimeField(default=timezone.now)
 	author = models.ForeignKey(TeamMember, on_delete=models.CASCADE)

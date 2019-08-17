@@ -1,13 +1,22 @@
 {% extends 'forum/base.html' %}
 {% block content %}
-	<h2>{{question_count}} Questions</h2>
-	{% for question in questions %}
-		<div class="question">
-	    		<h2><a href = "{% url 'question_detail' pk=question.pk %}">{{ question.title }}</a></h2>
-	    		<p>{{ question.text|linebreaksbr }}</p>
-			<div class="date">
-			<p>published: {{ question.published_date }}</p>
-	    		</div>
-		</div>
-	{% endfor %}
+	<div class = "question_list">
+		<h2>{{question_count}} Questions</h2>
+		{% for question in questions %}
+			<div class="question">
+		    		<h2><a href = "{% url 'question_detail' pk=question.pk %}">{{ question.title }}</a></h2>
+		    		<p>{{ question.text|linebreaksbr }}</p>
+				<div class="date">
+				<p>published: {{ question.published_date }}</p>
+		    		</div>
+			</div>
+		{% endfor %}
+	</div>
+	<div class = "sidebar">
+		<h4>Check out some recent Python questions on StackOverflow (updated live)</h4>
+		{% for item in stack_overflow_data %}
+			<a href = "{{item.link}}">{{ item.title|linebreaksbr }}</a>
+			<br>
+		{% endfor %}
+	</div>
 {% endblock %}

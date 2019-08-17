@@ -4,13 +4,22 @@ from django.utils import timezone
 from .models import User, TeamMember, Question, Answer
 from django.shortcuts import render, get_object_or_404
 from .forms import QuestionForm, AnswerForm
+import requests
 
 # Create your views here.
 
 def question_list(request):
 		questions = Question.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 		question_count = len(questions)
-		return render(request, 'forum/question_list.html', {'questions': questions, 'question_count' : question_count})
+		response = requests.get('https://api.stackexchange.com/2.2/questions?order=desc&sort=creation&tagged=python&site=stackoverflow')
+		copy = []
+		#print (response.json())
+		for data in response.json()['items']:
+			data_dic = {}
+			data_dic['title'] = data['title']
+			data_dic['link'] = data['link']
+			copy.append(data_dic)
+		return render(request, 'forum/question_list.html', {'questions': questions, 'question_count' : question_count, 'stack_overflow_data' : copy})
 
 def question_detail(request, pk):
 		question = get_object_or_404(Question, pk = pk)

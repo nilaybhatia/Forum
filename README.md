@@ -28,5 +28,15 @@ TODO: Shift the questions to a sidebar to utlise space efficiently. If (you're a
 **The Question Detail Page**
 ![ques_detail](/images/ques_detail.png?raw=true "QnA page for a particular question")
 
-Has features like upvoting, downvoting and editing questions and answers.
+Has features like **upvoting, downvoting and editing** questions and answers.
+Answers are **sorted by upvotes**.
 
+---
+**Adding a new question**
+![new_question](/images/new_question.png?raw=true "Asking a new question")
+
+---
+**Answering a question**
+![new_question](/images/new_answer.png?raw=true "A Unicode Team Member answers the question")
+
+---

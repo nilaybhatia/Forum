@@ -1,22 +1,24 @@
 .page-header {
     background-color: #191970;
-    margin-top: 10;
-    padding: 20px 20px 20px 700px;
-	text-align: center;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
-    font-size: 36pt;
+    font-size: 26pt;
     text-decoration: none;
-	position: relative;
+	/*position: absolute;
+	text-align: right;*/
 }
-
+.page-header h4 {
+	color: #828282
+}
 .content {
     margin-left: 40px;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, {
     font-family: 'Lobster', cursive;
 }
 
@@ -35,11 +37,12 @@ h1, h2, h3, h4 {
 .top-menu, .top-menu:hover, .top-menu:visited {
     color: #ffffff;
     float: right;
-    font-size: 26pt;
+    font-size: 16pt;
     margin-right: 20px;
-	position: absolute;
-	top: 40px
-	left: 40px
+	position: relative;
+	display: block;
+	top: 10px
+	right: 40px
 }
 
 .question {

@@ -47,6 +47,7 @@ def answer_new(request, pk):
 			answer.published_date = timezone.now()
 			question = get_object_or_404(Question, pk = pk)
 			answer.answer_to = question
+			answer.upvotes=0
 			answer.save()
 			return redirect('question_detail', pk = question.pk)
 	else:

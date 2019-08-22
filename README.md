@@ -18,9 +18,9 @@ In most of the colleges, all the students, who are in different divisions and ev
 
 ---
 
-**Using the StackOverflow API to show recent Python Questions**
+**Using the StackOverflow API to show recent questions on homepage**
 ![stack_api](/images/stack_api.png?raw=true "Using API")
-I have made use of the StackOverflow API to fetch the most recent questions labelled with the [```python```](https://stackoverflow.com/questions/tagged/python) tag.
+I have made use of the StackOverflow API to fetch the most recent questions.
 TODO: Shift the questions to a sidebar to utlise space efficiently. If (you're a front-end developer) || (know how to fix this) I'd be happy to accept a pull request. :smile:
 
 ---
@@ -29,4 +29,6 @@ TODO: Shift the questions to a sidebar to utlise space efficiently. If (you're a
 ![ques_detail](/images/ques_detail.png?raw=true "QnA page for a particular question")
 
 Has features like upvoting, downvoting and editing questions and answers.
+
+It also shows questions related to a language when the current question contains the language as a word. For eg. if somebody asks "In python, how to open a file in append mode?", then all recent questions with the [```python```](https://stackoverflow.com/questions/tagged/python) will show up. I have used Regular Expression for this feature.
 

@@ -4,28 +4,34 @@ from django.utils import timezone
 from .models import User, TeamMember, Question, Answer
 from django.shortcuts import render, get_object_or_404
 from .forms import QuestionForm, AnswerForm
-import requests
+import requests, re
 
 # Create your views here.
+def call_stackoverflow_API(language_tag):
+	response = requests.get('https://api.stackexchange.com/2.2/questions?order=desc&sort=creation' + language_tag + '&site=stackoverflow')
+	copy = []
+	#print (response.json())
+	for data in response.json()['items']:
+		data_dic = {}
+		data_dic['title'] = data['title']
+		data_dic['link'] = data['link']
+		copy.append(data_dic)
+	return copy
 
 def question_list(request):
 		questions = Question.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 		question_count = len(questions)
-		response = requests.get('https://api.stackexchange.com/2.2/questions?order=desc&sort=creation&tagged=python&site=stackoverflow')
-		copy = []
-		#print (response.json())
-		for data in response.json()['items']:
-			data_dic = {}
-			data_dic['title'] = data['title']
-			data_dic['link'] = data['link']
-			copy.append(data_dic)
-		return render(request, 'forum/question_list.html', {'questions': questions, 'question_count' : question_count, 'stack_overflow_data' : copy})
+		stack_overflow_data = call_stackoverflow_API('')
+		return render(request, 'forum/question_list.html', {'questions': questions, 'question_count' : question_count, 'stack_overflow_data' : stack_overflow_data})
 
 def question_detail(request, pk):
 		question = get_object_or_404(Question, pk = pk)
 		answers = Answer.objects.filter (answer_to = question).order_by('-upvotes')
 		answer_count = len(answers)
-		return render(request, 'forum/question_detail.html', { 'question' : question, 'answers' : answers, 'answer_count' : answer_count})
+		languages_or_frameworks = ["java", "python", "c", "cpp", "django", "android", "ruby"]
+		
+		stack_overflow_data = call_stackoverflow_API('&tagged=' + language)
+		return render(request, 'forum/question_detail.html', { 'question' : question, 'answers' : answers, 'answer_count' : answer_count, 'stack_overflow_data' : stack_overflow_data})
 
 def question_new(request):
 	if request.method == "POST":

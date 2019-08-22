@@ -29,9 +29,17 @@ def question_detail(request, pk):
 		answers = Answer.objects.filter (answer_to = question).order_by('-upvotes')
 		answer_count = len(answers)
 		languages_or_frameworks = ["java", "python", "c", "cpp", "django", "android", "ruby"]
-		
+		words = (question.title).split(' ')
+		words = re.split(r'[\s,\?\.]', question.title)
+		print (words)
+		language=''
+		for word in words:
+			if word.lower() in languages_or_frameworks:
+				language = word
+				break
+		print("Hello" + language)
 		stack_overflow_data = call_stackoverflow_API('&tagged=' + language)
-		return render(request, 'forum/question_detail.html', { 'question' : question, 'answers' : answers, 'answer_count' : answer_count, 'stack_overflow_data' : stack_overflow_data})
+		return render(request, 'forum/question_detail.html', { 'question' : question, 'answers' : answers, 'answer_count' : answer_count, 'stack_overflow_data' : stack_overflow_data, 'lang':language})
 
 def question_new(request):
 	if request.method == "POST":

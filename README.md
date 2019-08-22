@@ -31,7 +31,7 @@ TODO: Shift the questions to a sidebar to utlise space efficiently. If (you're a
 Has features like **upvoting, downvoting and editing** questions and answers.
 Answers are **sorted by upvotes**.
 
-It also shows questions related to a language when the current question contains the language as a word. For eg. if somebody asks "In python, how to open a file in append mode?", then all recent questions with the [```python```](https://stackoverflow.com/questions/tagged/python) will show up. I have used Regular Expression for this feature.
+It also shows questions related to a language when the current question contains the language as a word. For eg. if somebody asks "In python, how to open a file in append mode?", then all recent questions from StackOverflow with the [```python```](https://stackoverflow.com/questions/tagged/python) will show up. I have used **Regular Expression** for this feature.
 
 ---
 **Adding a new question**

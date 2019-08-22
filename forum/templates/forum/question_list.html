@@ -13,7 +13,7 @@
 		{% endfor %}
 	</div>
 	<div class = "sidebar">
-		<h4>Check out some recent Python questions on StackOverflow (updated live)</h4>
+		<h4>Check out some recent questions on StackOverflow (updated live)</h4>
 		{% for item in stack_overflow_data %}
 			<a href = "{{item.link}}">{{ item.title|linebreaksbr }}</a>
 			<br>

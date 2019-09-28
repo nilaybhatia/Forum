@@ -4,11 +4,66 @@ from django.utils import timezone
 from .models import User, TeamMember, Question, Answer
 from django.shortcuts import render, get_object_or_404
 from .forms import QuestionForm, AnswerForm
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
+from .forms import UserForm , ProfileForm
 # Create your views here.
 
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        #user_form = UserForm(request.POST)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, _('Your profile was successfully updated!'))
+            return redirect('settings:profile')
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'forum/profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form })
+
+def create_profile(request):
+    if request.method == 'POST':
+        #user_form = UserForm(request.POST, instance=request.user)
+        user_form = UserForm(request.POST)
+        profile_form = ProfileForm(request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save(commit=False)
+            profile_form.save(commit=False)
+            #messages.success(request, _('Your profile was successfully updated!'))
+            return redirect('')
+        
+            #messages.error(request, _('Please correct the error below.'))
+    else:
+        user_form = UserForm()
+        profile_form = ProfileForm()
+    return render(request, 'profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form })
+def my_login(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        # Redirect to a success page.
+        return redirect('question_list')
+    else:
+        # Return an 'invalid login' error message.
+        return render(request, 'forum/registration/login.html')
+#@login_required
 def question_list(request):
-		questions = Question.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+		if request.user.is_authenticated:
+			questions = Question.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+		else:
+			questions = Question.objects.filter(tags__name__in=["open"]).order_by('-published_date')
 		question_count = len(questions)
 		return render(request, 'forum/question_list.html', {'questions': questions, 'question_count' : question_count})
 

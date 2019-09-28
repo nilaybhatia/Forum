@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    <script type="text/javascript" src="{% static 'forum/bootstrap/js/jquery-3.4.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'forum/bootstrap/js/bootstrap.min.js' %}"></script>
+    <link type="text/css" href="1.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'forum/bootstrap/css/bootstrap.min.css' %}" type="text/css">
+    <style>
+        .nav-item{text-align: right;
+        margin: 0px 10px 0px 0px;}
+        
+    </style>
+</head>
+    <body>
+          <nav style="margin-bottom:10px" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <div style="margin-left:75px;">
+                    <img style="height:60px; margin-bottom: 10px;"  class="img-thumbnail img-fluid rounded-circle" src="{% static 'forum/img/symb.jpg' %}">
+                    <a href=" " style="margin-top:10px;"class="navbar-brand nav-link"><h3>D.J. Sanghvi</h3></a>
+                </div><div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button></div>
+                   <div style="margin-right:60px; " class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+                        <ul class="navbar-nav">
+                                <li class="nav-item"><button type="button" class="btn btn-lg btn-dark"><a href="{% url 'create_profile' %}" class="nav-link">Sign Up</a></button></li>
+                                <li class="nav-item"><button type="button" class="btn btn-lg btn-dark "><a href="{% url 'my_login' %}" class="nav-link">Login</a></button></li>
+                    </ul>
+                </div> 
+            </div>
+        </nav>
+        
+        
+        
+         <div class="modal" id="mm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">LOGIN</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+        <div class="modal-body">
+           
+            
+            <div class="panel panel-default res">
+            
+                <div class="panel-body">
+                    <form>
+                        <div class="input-group-lg">
+                            <input type="text" class="form-control " placeholder="username" name="username"><br>
+                            <input type="text" class="form-control row_style" placeholder="password" name="password"><br>
+                  <a href="products.html"><input type="button" class="btn btn-primary row_style" value="Submit">
+                  </a>
+                     
+                    </form> </div>
+                </div>
+                <br><br> <div class="panel-footer">
+                    <a href="signup.html"><p>Don't have an account? Register!</p></a> 
+                </div>
+                         
+                        
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+        
+</body>
+</html>       

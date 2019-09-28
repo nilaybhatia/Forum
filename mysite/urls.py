@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 	path('', include('forum.urls')),
     path('login/', auth_views.LoginView.as_view()),
-    path(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
+    path('oauth/', include('social_django.urls', namespace='social')),  # <--
 ]
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'

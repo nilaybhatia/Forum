@@ -44,7 +44,7 @@ def create_profile(request):
     else:
         user_form = UserForm()
         profile_form = ProfileForm()
-    return render(request, 'profile.html', {
+    return render(request, 'forum/registration/profile.html', {
         'user_form': user_form,
         'profile_form': profile_form })
 def my_login(request):

@@ -20,11 +20,11 @@ margin-top:20px;
 </style>
 </head>
 <body>
-
+	<h1 style="margin-top:90px">{{ user.is_authenticated }}</h1>
 	{% if user.is_authenticated %}
-		{% include 'forum/nav1.html' %}
-	{% else %}
 		{% include 'forum/nav2.html' %}
+	{% else %}
+		{% include 'forum/nav1.html' %}
 	{% endif %}
 	{% block content %}
 	{% endblock %}

@@ -5,7 +5,7 @@ from .models import User, TeamMember, Question, Answer
 from django.shortcuts import render, get_object_or_404
 from .forms import QuestionForm, AnswerForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from .forms import UserForm , ProfileForm
 # Create your views here.
@@ -38,7 +38,7 @@ def create_profile(request):
             user_form.save(commit=False)
             profile_form.save(commit=False)
             #messages.success(request, _('Your profile was successfully updated!'))
-            return redirect('')
+            return redirect('question_list')
         
             #messages.error(request, _('Please correct the error below.'))
     else:
@@ -58,6 +58,9 @@ def my_login(request):
     else:
         # Return an 'invalid login' error message.
         return render(request, 'forum/registration/login.html')
+def my_logout(request):
+		logout(request)
+		return redirect('question_list')
 #@login_required
 def question_list(request):
 		if request.user.is_authenticated:

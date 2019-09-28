@@ -2,7 +2,7 @@
 {% block content %}
 	<h2>Homepage</h2>
 	<p>Hello {{ user.username }}!</p>
-	<h2 style="margin-top:90px">{{question_count}} Questions</h2>
+	<h2 style="margin-top:90px">{{question_count}} Questions</h2><a href="{% url 'question_new' %}" class="top-menu"><span ><i class="fa fa-pencil"></i></span></a>
 	{% for question in questions %}
 		<div class="question">
 	    		<h2><a href = "{% url 'question_detail' pk=question.pk %}">{{ question.title }}</a></h2>

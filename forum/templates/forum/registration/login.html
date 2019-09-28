@@ -1,13 +1,16 @@
 {% extends 'forum/registration/base.html' %}
 
 {% block content %}
-  <h2 style="margin-top:90px">Login</h2>
-  <form method="post">
+<center>
+   <h1 style="margin-top:120px">Login</h1>
+  <div class="col-6 "><form method="post">
+    <input style="height:40px; width:270px;" class="rounded"type="text" placeholder="username"></input><br><br>
+    <input  style="height:40px; width:270px;" class="rounded" type="password" placeholder="password"></imput><br><br><br>
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Login</button>
+    <button class="btn btn-primary btn-lg " type="submit">Login</button>
   </form>
   <br>
   <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br></div></center>
 {% endblock %}

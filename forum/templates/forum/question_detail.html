@@ -1,7 +1,9 @@
 {% extends 'forum/base.html' %}
 
 {% block content %}
-    <div style="margin-top:90px"class="question">
+<div style="margin-top:90px;background-color: lightblue">
+	<br><br><br>
+    <div class="question offset-1 container">
         <h2>{{ question.title }}<button style = "background-color:#fff" class="btn btn-primary"><a href = "{% url 'question_edit' pk=question.pk %}">Edit<span><i class="fa fa-pencil"></i></span></a></button></h2>
 		{% if question.published_date %}
             <div class="date">
@@ -15,20 +17,25 @@
 			{{ t }}, 
 		{% endfor %}
     </div>
-	<br>
+	<br><div class="offset-1 container">
 	<button style = "background-color:#fff" class="btn btn-primary"><a href = "{% url 'answer_new' pk=question.pk %}">Answer this question <span><i class="fa fa-pencil"></span></a></button>
 	<h3>{{answer_count}} Answer(s):</h3>
-	<div class = "answers">
+	<div class = "answers container" style="font-size: 18px;">
 		{% for answer in answers %}				
 			<p>{{ answer.text|linebreaksbr }}</p>
 			{% if answer.published_date %}
-				<div class="date">
+				<div class="date"style="font-size: 14px;">
 					{{ answer.published_date }}
 				</div>
 			{% endif %}
-			<p>Answered by: {{answer.author}}</p><button style = "background-color:#fff" class="btn btn-primary"><a href = "{% url 'answer_edit' pk=answer.pk %}">Edit<span ><i class="fa fa-pencil"></i></span></a></button>
+			<p style="font-size: 14px;">Answered by: {{answer.author}}</p><button style = "background-color:#fff" class="btn btn-primary"><a href = "{% url 'answer_edit' pk=answer.pk %}">Edit<span ><i class="fa fa-pencil"></i></span></a></button>
+			<a style="font-size:12px" class="btn btn-info btn-lg" href = "{% url 'upvote' pk=answer.pk %}">Upvote<span class=""></span></a>
+			<span><a style="font-size:12px" class="btn btn-info btn-lg" href = "{% url 'downvote' pk=answer.pk %}">Downvote<span class=""></span></a></span>
+			<span><a style="font-size:12px" class="btn btn-info btn-lg" href = "{% url 'answer_edit' pk=answer.pk %}">Edit<span class=""></span></a></span>
 			<hr>
+			<h5>{{answer.upvotes}} Upvote(s)</h5>
 			<br>
 		{% endfor %}
-	</div>		
+	</div>
+	</div>		</div>
 {% endblock %}

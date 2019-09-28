@@ -1,11 +1,15 @@
 {% extends 'forum/base.html' %}
 
 {% block content %}
-	<p>{{question.title}}</p>
-	<p>{{question.text}}</p>
-    <h2>New answer</h2>
-    <form method="POST" class="post-form">{% csrf_token %}
+     <div style="background-color:#91d4f3">
+        <div class="offset-1"><h2 style="margin-bottom:0px;margin-top:90px;">{{question.title}}</h2>
+	<br><br><h4 style=" margin-top:0px; ">{{question.text}}</h4></div><hr style="color:#fff">
+    <div class="offset-1">
+        <h2>New answer:</h2>
+        <br><br>
+    <form style="background-color:#91d4f3" method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+        <button type="submit" style="margin-left:50px;margin-bottom:70px;"  class="save btn btn-light">Save</button>
+    </form></div></div>
+
 {% endblock %}

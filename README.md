@@ -21,7 +21,7 @@ In most of the colleges, all the students, who are in different divisions and ev
 **Using the StackOverflow API to show recent questions on homepage**
 ![stack_api](/images/stack_api.png?raw=true "Using API")
 I have made use of the StackOverflow API to fetch the most recent questions.
-TODO: Shift the questions to a sidebar to utlise space efficiently. If (you're a front-end developer) || (know how to fix this) I'd be happy to accept a pull request. :smile:
+TODO: Shift the questions to a sidebar to utilise space efficiently.
 
 ---
 
